@@ -67,7 +67,7 @@ contract NFTMarketplace is ERC721URIStorage {
             owner, 
             seller, 
             price, 
-            currentlyListed
+            true
         );
     }
 }
