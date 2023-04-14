@@ -107,6 +107,8 @@ contract NFTMarketplace is ERC721URIStorage {
                 currentIndex +=1;
         }
     }
+    return items;
+    }
 
     function executeSale(uint256 tokenId) public payable {
         
