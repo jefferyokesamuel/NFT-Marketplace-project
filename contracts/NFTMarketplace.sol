@@ -37,7 +37,6 @@ contract NFTMarketplace is ERC721URIStorage {
         bool currentlyListed
     );
 
-    //This mapping maps tokenId to token info and is helpful when retrieving details about a tokenId
     mapping(uint256 => ListedToken) private idToListedToken;
 
 }
