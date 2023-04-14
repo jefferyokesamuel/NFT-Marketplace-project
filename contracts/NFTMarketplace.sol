@@ -15,7 +15,6 @@ contract NFTMarketplace is ERC721URIStorage {
     Counters.Counter private _tokenIds;
     //Keeps track of the number of items sold on the marketplace
     Counters.Counter private _itemsSold;
-    //owner is the contract address that created the smart contract
     address payable owner;
     uint256 listPrice = 0.01 ether;
 
