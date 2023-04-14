@@ -64,8 +64,8 @@ contract NFTMarketplace is ERC721URIStorage {
 
         emit TokenListedSuccess(
             tokenId, 
-            owner, 
-            seller, 
+            address(this), 
+            msg.sender, 
             price, 
             true
         );
