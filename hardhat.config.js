@@ -18,8 +18,8 @@ module.exports = {
       chainId: 1337
     },
     goerli: {
-      url: "<YOUR_ALCHEMY_URL>",
-      accounts: [ "<YOUR_PRIVATE_KEY>" ]
+      url: process.env.ALCHEMY_API_URL,
+      accounts: [ process.env.ALCHEMY_API_KEY ]
     }
   },
   solidity: {
