@@ -74,6 +74,11 @@ contract NFTMarketplace is ERC721URIStorage {
             ListedToken storage currentItem = idToListedToken[currentId];
     }
 
+    function getMyNFTS() public view returns (ListedToken[] memory) {
+        uint totalItemCount = _tokenIds.current();
+        uint itemCount = 0;
+        uint currentIndex = 0;
+
         for (uint i = 0; i < totalItemCount; i++) 
         { 
             if(idToListedToken[i+1].owner == msg.sender || idToListedToken[i+1].seller == msg.sender) {
