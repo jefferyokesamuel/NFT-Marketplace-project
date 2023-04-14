@@ -49,4 +49,6 @@ contract NFTMarketplace is ERC721URIStorage {
     }
 
     
+        require(msg.value == listPrice, "Send the Correct Price");
+        require(price > 0, "Price shouldnt be negative");
 }
