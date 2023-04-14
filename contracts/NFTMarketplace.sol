@@ -10,7 +10,7 @@ contract NFTMarketplace is ERC721URIStorage {
         owner = payable(msg.sender);
     }
 
-        using Counters for Counters.Counter;
+    using Counters for Counters.Counter;
     
     Counters.Counter private _tokenIds;
     Counters.Counter private _itemsSold;
@@ -25,7 +25,6 @@ contract NFTMarketplace is ERC721URIStorage {
         bool currentlyListed;
     }
 
-    //the event emitted when a token is successfully listed
     event TokenListedSuccess (
         uint256 indexed tokenId,
         address owner,
