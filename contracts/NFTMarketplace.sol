@@ -122,5 +122,8 @@ contract NFTMarketplace is ERC721URIStorage {
         _transfer(address(this), msg.sender, tokenId);
         approve(address(this), tokenId);
 
+        //Transferring the listing fee to the marketplace creator
+        payable(owner).transfer(listPrice);
+        payable(seller).transfer(msg.value);
     }
 }
