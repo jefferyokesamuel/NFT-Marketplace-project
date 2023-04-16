@@ -11,6 +11,51 @@ const [data, updateData] = useState({});
 const [message, updateMessage] = useState("");
 const [currAddress, updateCurrAddress] = useState("0x");
 
+async function getNFTData(tokenId) {
+    const ethers = require("ethers");
+    //After adding your Hardhat network to your metamask, this code will get providers and signers
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    //Pull the deployed contract instance
+    let contract = new ethers.Contract(MarketplaceJSON.address, MarketplaceJSON.abi, signer)
+    //create an NFT Token
+    const tokenURI = await contract.tokenURI(tokenId);
+    const listedToken = await contract.getListedTokenForId(tokenId);
+    let meta = await axios.get(tokenURI);
+    meta = meta.data;
+    console.log(listedToken);
+
+    let item = {
+        price: meta.price,
+        tokenId: tokenId,
+        seller: listedToken.seller,
+        owner: listedToken.owner,
+        image: meta.image,
+        name: meta.name,
+        description: meta.description,
+    }
+    console.log(item);
+    updateData(item);
+}
+
+async function buyNFT(tokenId) {
+    try {
+        const ethers = require("ethers");
+        //After adding your Hardhat network to your metamask, this code will get providers and signers
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        //Pull the deployed contract instance
+        let contract = new ethers.Contract(MarketplaceJSON.address, MarketplaceJSON.abi, signer);
+        const salePrice = ethers.utils.parseUnits(data.price, 'ether')
+        let transaction = await contract.executeSale(tokenId, {value:salePrice});
+        await transaction.wait();
+
+        alert('You successfully bought the NFT!');
+    }
+    catch(e) {
+        alert("Upload Error"+e)
+    }
+}
     return(
         <div style={{"min-height":"100vh"}}>
             <Navbar></Navbar>
