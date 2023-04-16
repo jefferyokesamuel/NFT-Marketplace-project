@@ -12,6 +12,20 @@ export default function SellNFT () {
     const location = useLocation();
 
                     console.log("Uploaded image to Pinata: ", response.pinataURL)
+                    setFileURL(response.pinataURL);
+                }
+            }
+            catch(e) {
+                console.log("Error during file upload", e);
+            }
+        }
+    
+        //This function uploads the metadata to IPDS
+        async function uploadMetadataToIPFS() {
+            const {name, description, price} = formParams;
+            //Make sure that none of the fields are empty
+            if( !name || !description || !price || !fileURL)
+                return;
     
             const nftJSON = {
                 name, description, price, image: fileURL
