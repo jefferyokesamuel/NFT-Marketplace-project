@@ -10,6 +10,12 @@ export default function Profile () {
     const [address, updateAddress] = useState("0x");
     const [totalPrice, updateTotalPrice] = useState("0");
     
+        let sumPrice = 0;
+        const addr = await signer.getAddress();
+
+            let meta = await axios.get(tokenURI);
+                image: meta.image,
+        updateTotalPrice(sumPrice.toPrecision(3));
     return (
         <div className="profileClass" style={{"min-height":"100vh"}}>
             <Navbar></Navbar>
