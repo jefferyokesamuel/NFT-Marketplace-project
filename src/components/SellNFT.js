@@ -60,6 +60,9 @@ export default function SellNFT () {
             }
             catch(e) {
                 alert( "Upload error"+e )
+            }
+        }
+    
     return (
         <div className="">
         <Navbar></Navbar>
