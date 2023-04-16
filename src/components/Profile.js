@@ -13,6 +13,19 @@ export default function Profile () {
         let sumPrice = 0;
         const addr = await signer.getAddress();
 
+        //Pull the deployed contract instance
+        let contract = new ethers.Contract(MarketplaceJSON.address, MarketplaceJSON.abi, signer)
+
+        //create an NFT Token
+        let transaction = await contract.getMyNFTs()
+
+        /*
+        * Below function takes the metadata from tokenURI and the data returned by getMyNFTs() contract function
+        * and creates an object of information that is to be displayed
+        */
+        
+        const items = await Promise.all(transaction.map(async i => {
+            const tokenURI = await contract.tokenURI(i.tokenId);
             let meta = await axios.get(tokenURI);
             meta = meta.data;
 
