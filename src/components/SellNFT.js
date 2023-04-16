@@ -11,6 +11,14 @@ export default function SellNFT () {
     const [message, updateMessage] = useState('');
     const location = useLocation();
 
+        //This function uploads the NFT image to IPFS
+        async function OnChangeFile(e) {
+            var file = e.target.files[0];
+            //check for file extension
+            try {
+                //upload the file to IPFS
+                const response = await uploadFileToIPFS(file);
+                if(response.success === true) {
                     console.log("Uploaded image to Pinata: ", response.pinataURL)
                     setFileURL(response.pinataURL);
                 }
