@@ -26,6 +26,13 @@ export default function Profile () {
         updateFetched(true);
         updateAddress(addr);
         updateTotalPrice(sumPrice.toPrecision(3));
+    }
+
+    const params = useParams();
+    const tokenId = params.tokenId;
+    if(!dataFetched)
+        getNFTData(tokenId);
+        
     return (
         <div className="profileClass" style={{"min-height":"100vh"}}>
             <Navbar></Navbar>
