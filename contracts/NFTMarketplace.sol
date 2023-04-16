@@ -131,6 +131,9 @@ contract NFTMarketplace is ERC721URIStorage {
         require(owner == msg.sender, "Only the owner can update the list price");
         listPrice = _listedPrice;
     function getListPrice() public view returns (uint256) {
+        return listPrice;
+    }
+
     function getLatestIdToListedToken() public view returns (ListedToken memory) {
     function getListedTokenForId(uint256 tokenId) public view returns (ListedToken memory) {
     function getCurrentToken() public view returns(uint256) {
