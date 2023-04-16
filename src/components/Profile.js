@@ -15,6 +15,16 @@ export default function Profile () {
 
             let meta = await axios.get(tokenURI);
                 image: meta.image,
+                name: meta.name,
+                description: meta.description,
+            }
+            sumPrice += Number(price);
+            return item;
+        }))
+
+        updateData(items);
+        updateFetched(true);
+        updateAddress(addr);
         updateTotalPrice(sumPrice.toPrecision(3));
     return (
         <div className="profileClass" style={{"min-height":"100vh"}}>
