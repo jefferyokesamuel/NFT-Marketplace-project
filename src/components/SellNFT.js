@@ -11,6 +11,11 @@ export default function SellNFT () {
     const [message, updateMessage] = useState('');
     const location = useLocation();
 
+                    console.log("Uploaded image to Pinata: ", response.pinataURL)
+    
+                const price = ethers.utils.parseUnits(formParams.price, 'ether')
+    
+                alert( "Upload error"+e )
     return (
         <div className="">
         <Navbar></Navbar>
