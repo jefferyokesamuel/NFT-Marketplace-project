@@ -46,6 +46,8 @@ export default function SellNFT () {
     
                 //massage the params to be sent to the create NFT request
                 const price = ethers.utils.parseUnits(formParams.price, 'ether')
+                let listingPrice = await contract.getListPrice()
+                listingPrice = listingPrice.toString()
     
                 //actually create the NFT
                 let transaction = await contract.createToken(metadataURL, price, { value: listingPrice })
