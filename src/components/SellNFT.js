@@ -13,6 +13,38 @@ export default function SellNFT () {
 
                     console.log("Uploaded image to Pinata: ", response.pinataURL)
     
+            const nftJSON = {
+                name, description, price, image: fileURL
+            }
+    
+            try {
+                //upload the metadata JSON to IPFS
+                const response = await uploadJSONToIPFS(nftJSON);
+                if(response.success === true){
+                    console.log("Uploaded JSON to Pinata: ", response)
+                    return response.pinataURL;
+                }
+            }
+            catch(e) {
+                console.log("error uploading JSON metadata:", e)
+            }
+        }
+    
+        async function listNFT(e) {
+            e.preventDefault();
+    
+            //Upload data to IPFS
+            try {
+                const metadataURL = await uploadMetadataToIPFS();
+                //After adding your Hardhat network to your metamask, this code will get providers and signers
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = provider.getSigner();
+                updateMessage("Please wait.. uploading (upto 5 mins)")
+    
+                //Pull the deployed contract instance
+                let contract = new ethers.Contract(Marketplace.address, Marketplace.abi, signer)
+    
+                //massage the params to be sent to the create NFT request
                 const price = ethers.utils.parseUnits(formParams.price, 'ether')
     
                 //actually create the NFT
