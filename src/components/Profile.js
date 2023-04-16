@@ -11,6 +11,10 @@ export default function Profile () {
     const [totalPrice, updateTotalPrice] = useState("0");
     
         let sumPrice = 0;
+
+        //After adding your Hardhat network to your metamask, this code will get providers and signers
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
         const addr = await signer.getAddress();
 
         //Pull the deployed contract instance
