@@ -15,6 +15,16 @@ export default function SellNFT () {
     
                 const price = ethers.utils.parseUnits(formParams.price, 'ether')
     
+                //actually create the NFT
+                let transaction = await contract.createToken(metadataURL, price, { value: listingPrice })
+                await transaction.wait()
+    
+                alert("Successfully listed your NFT!");
+                updateMessage("");
+                updateFormParams({ name: '', description: '', price: ''});
+                window.location.replace("/")
+            }
+            catch(e) {
                 alert( "Upload error"+e )
     return (
         <div className="">
