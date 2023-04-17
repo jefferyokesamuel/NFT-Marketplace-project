@@ -27,7 +27,6 @@ export default function Profile () {
         let transaction = await contract.getMyNFTs()
 
         /*
-        * Below function takes the metadata from tokenURI and the data returned by getMyNFTs() contract function
         * and creates an object of information that is to be displayed
         */
         
