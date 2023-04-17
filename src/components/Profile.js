@@ -25,9 +25,6 @@ export default function Profile () {
 
         //create an NFT Token
         let transaction = await contract.getMyNFTs()
-
-        /*
-        */
         
         const items = await Promise.all(transaction.map(async i => {
             const tokenURI = await contract.tokenURI(i.tokenId);
