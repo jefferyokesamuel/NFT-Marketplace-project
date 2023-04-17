@@ -27,7 +27,6 @@ export default function Profile () {
         let transaction = await contract.getMyNFTs()
 
         /*
-        * and creates an object of information that is to be displayed
         */
         
         const items = await Promise.all(transaction.map(async i => {
